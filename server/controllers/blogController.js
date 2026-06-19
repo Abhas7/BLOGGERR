@@ -2,7 +2,7 @@ import fs from 'fs'
 import imagekit from '../configs/imageKit.js';
 import Blog from '../models/Blog.js';
 import Comment from '../models/Comment.js';
-import generateAIContent from '../configs/openrouter.js';
+import generateAIContent from '../configs/localLlm.js';
 
 export const addBlog = async (req, res) => {
     try {
