@@ -25,12 +25,38 @@ const AddBlog = () => {
 
         try {
             setLoading(true);
-            const { data } = await axios.post('/api/blog/generate', { prompt: title })
-            if (data.success) {
-                quillRef.current.root.innerHTML = parse(data.content)
+
+            // Read variables to support direct cloud space calls
+            const ollamaApiUrl = import.meta.env.VITE_OLLAMA_API_URL;
+            const ollamaModel = import.meta.env.VITE_OLLAMA_MODEL || 'qwen2.5:0.5b';
+
+            let contentText = '';
+
+            if (ollamaApiUrl) {
+                // Call Hugging Face space directly from the browser (bypasses Vercel's 10-second timeout!)
+                const response = await axios.post(`${ollamaApiUrl}/api/generate`, {
+                    model: ollamaModel,
+                    prompt: title + ' Generate a blog content for this topic in simple text format',
+                    stream: false
+                });
+
+                if (response.data && response.data.response) {
+                    contentText = response.data.response;
+                } else {
+                    throw new Error("Failed to generate content from cloud LLM");
+                }
             } else {
-                toast.error(data.message)
+                // Local fallback: route through your backend server
+                const { data } = await axios.post('/api/blog/generate', { prompt: title })
+                if (data.success) {
+                    contentText = data.content;
+                } else {
+                    throw new Error(data.message);
+                }
             }
+
+            quillRef.current.root.innerHTML = parse(contentText);
+            toast.success("AI Content generated successfully!");
         } catch (error) {
             toast.error(error.message)
         } finally {
