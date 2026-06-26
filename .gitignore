@@ -1,0 +1,25 @@
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Runtime dependency directories
+node_modules/
+/jspm_packages/
+
+# Dist / build outputs
+dist/
+dist-ssr/
+build/
+.vercel/
+
+# Local Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+client/.env
+server/.env
+**/.env
+**/.env.local

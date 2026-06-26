@@ -1,12 +1,34 @@
-# React + Vite
+# 💻 BLOGGERR — Client Dashboard & Public Feed
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the React frontend codebase for **BLOGGERR**.
 
-Currently, two official plugins are available:
+For detailed setup, environment variables, full-stack workflow diagrams, and backend API references, please see the **[Main Project README.md](../README.md)**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Key Libraries & Integrations
+*   **Vite + React 19**
+*   **Tailwind CSS (v4)**: High-performance utility styling.
+*   **Quill.js**: Used in the admin suite to draft blogs.
+*   **Marked.js**: Parses markdown content returned from the local AI LLM generator.
+*   **Motion (Framer)**: Custom micro-interactions and transitions.
+*   **Axios**: Communicates with the Express API server.
+*   **React Hot Toast**: Beautiful state and event alert notifications.
 
-## Expanding the ESLint configuration
+## 🛠️ Commands
+Make sure your environment variables in `.env` are configured.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Install dependencies
+npm install
+
+# Start Vite dev server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run ESLint validation
+npm run lint
+```
